@@ -77,4 +77,5 @@ Next.js 16 (App Router), TypeScript, Tailwind CSS 4. No component library and no
 - **No map.** A static address and hours were enough for the prototype. A real build would embed a map on the service and contact pages.
 - **Search is client-side substring matching.** Fine for 30 bikes, would need indexing at 300.
 - **The contact form does not send.** It shows a success state and says so.
+- **The browser overlay wins over the seed.** Once the owner page has saved anything, that copy is what the site shows in that browser, so a code change to the sample data will not appear until "Reset sample data" is pressed. Correct for a prototype, and exactly why real data belongs on a server.
 - **Next:** real photo uploads in the admin form, a compare tray for two or three bikes, a "notify me" list keyed to type and size, and a trade-in estimate flow on the service page.
