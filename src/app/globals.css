@@ -1,26 +1,90 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+@theme {
+  --color-ink: #1c1917;
+  --color-ink-2: #57534e;
+  --color-sand: #faf7f2;
+  --color-sand-2: #f1ebe1;
+  --color-line: #e2dcd2;
+  --color-forest: #1b4332;
+  --color-forest-2: #2d6a4f;
+  --color-moss: #b7e4c7;
+  --color-ember: #d9552e;
+  --color-ember-2: #f4d3c6;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-sand);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-ember);
+  outline-offset: 2px;
+}
+
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 0.65rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  transition-property: background-color, color, transform;
+  transition-duration: 150ms;
+}
+
+@utility btn-primary {
+  background: var(--color-forest);
+  color: white;
+}
+.btn-primary:hover {
+  background: var(--color-forest-2);
+}
+
+@utility btn-secondary {
+  background: white;
+  color: var(--color-forest);
+  border: 1px solid var(--color-line);
+}
+.btn-secondary:hover {
+  background: var(--color-sand-2);
+}
+
+@utility btn-accent {
+  background: var(--color-ember);
+  color: white;
+}
+.btn-accent:hover {
+  filter: brightness(0.95);
+}
+
+@utility card {
+  background: white;
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
+}
+
+@utility field {
+  width: 100%;
+  border-radius: 0.6rem;
+  border: 1px solid var(--color-line);
+  background: white;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.95rem;
 }
