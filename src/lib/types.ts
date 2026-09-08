@@ -1,7 +1,14 @@
-export type Category = "Commuter" | "Cargo" | "Mountain" | "Folding" | "Road";
+export type Category = "Commuter" | "Cargo" | "Folding" | "Mountain" | "Fat tire";
 export type FrameSize = "S" | "M" | "L" | "XL";
 export type Condition = "Excellent" | "Very good" | "Good" | "Fair";
 export type Status = "available" | "reserved" | "sold";
+
+export interface Photo {
+  file: string; // filename under /public/photos
+  alt: string;
+  credit: string; // photographer, Unsplash license
+  source: string; // Unsplash photo page
+}
 
 export interface Bike {
   id: string;
@@ -22,7 +29,7 @@ export interface Bike {
   topAssistMph: number;
   color: string;
   status: Status;
-  photoCount: number;
+  photos: Photo[]; // empty for bikes added through the owner page (uses placeholder art)
   summary: string;
   inspection: string[];
   included: string[];
@@ -30,7 +37,7 @@ export interface Bike {
   addedAt: string; // ISO date
 }
 
-export const CATEGORIES: Category[] = ["Commuter", "Cargo", "Mountain", "Folding", "Road"];
+export const CATEGORIES: Category[] = ["Commuter", "Cargo", "Folding", "Mountain", "Fat tire"];
 export const FRAME_SIZES: FrameSize[] = ["S", "M", "L", "XL"];
 export const CONDITIONS: Condition[] = ["Excellent", "Very good", "Good", "Fair"];
 export const STATUSES: Status[] = ["available", "reserved", "sold"];

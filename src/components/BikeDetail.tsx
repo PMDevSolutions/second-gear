@@ -58,24 +58,34 @@ export function BikeDetail({ slug, seed }: { slug: string; seed: Bike[] }) {
 
       <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr]">
         <section aria-label="Photos">
-          <div className="card aspect-[4/3] overflow-hidden">
-            <BikePhoto bike={bike} index={photo} priority />
+          <div className="card relative aspect-[4/3] overflow-hidden">
+            <BikePhoto bike={bike} index={photo} priority sizes="(min-width: 1024px) 640px, 100vw" />
           </div>
+          {bike.photos.length > 1 && (
           <ul className="mt-3 grid grid-cols-5 gap-2 sm:grid-cols-7">
-            {Array.from({ length: bike.photoCount }).map((_, i) => (
+            {bike.photos.map((_, i) => (
               <li key={i}>
                 <button
                   type="button"
                   aria-label={`Show photo ${i + 1}`}
                   aria-current={photo === i}
                   onClick={() => setPhoto(i)}
-                  className={`block aspect-[4/3] w-full overflow-hidden rounded-lg border-2 ${photo === i ? "border-forest" : "border-transparent"}`}
+                  className={`relative block aspect-[4/3] w-full overflow-hidden rounded-lg border-2 ${photo === i ? "border-forest" : "border-transparent"}`}
                 >
-                  <BikePhoto bike={bike} index={i} />
+                  <BikePhoto bike={bike} index={i} sizes="120px" />
                 </button>
               </li>
             ))}
           </ul>
+          )}
+          {bike.photos[0] && (
+            <p className="mt-2 text-xs text-ink-2">
+              Photo: {bike.photos[photo]?.credit ?? bike.photos[0].credit} via{" "}
+              <a href={bike.photos[photo]?.source ?? bike.photos[0].source} className="underline" rel="noreferrer">
+                Unsplash
+              </a>
+            </p>
+          )}
         </section>
 
         <section aria-labelledby="bike-title">

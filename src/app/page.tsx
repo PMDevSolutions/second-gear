@@ -1,4 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
+import { PHOTOS } from "@/lib/photos";
 import { SEED_BIKES, availableBikes } from "@/lib/bikes";
 import { BikeCard } from "@/components/BikeCard";
 import { SHOP } from "@/components/Footer";
@@ -42,15 +44,21 @@ export default function HomePage() {
               </a>
             </p>
           </div>
-          <ul className="grid gap-3">
-            {promises.map((p) => (
-              <li key={p.title} className="card p-4">
-                <h2 className="font-semibold">{p.title}</h2>
-                <p className="mt-1 text-sm text-ink-2">{p.body}</p>
-              </li>
-            ))}
-          </ul>
+          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-line md:aspect-[5/4]">
+            <Image src={`/photos/${PHOTOS.stepThruSea.file}`} alt={PHOTOS.stepThruSea.alt} fill priority sizes="(min-width: 768px) 45vw, 100vw" className="object-cover" />
+          </div>
         </div>
+      </section>
+
+      <section aria-label="What you get" className="border-b border-line bg-white">
+        <ul className="mx-auto grid max-w-6xl gap-4 px-4 py-8 md:grid-cols-3">
+          {promises.map((p) => (
+            <li key={p.title}>
+              <h2 className="font-semibold">{p.title}</h2>
+              <p className="mt-1 text-sm text-ink-2">{p.body}</p>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section aria-labelledby="latest" className="mx-auto max-w-6xl px-4 py-12">

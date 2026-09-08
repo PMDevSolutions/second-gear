@@ -56,7 +56,7 @@ export function Footer() {
       </div>
       <div className="border-t border-line">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-4 text-xs text-ink-2">
-          <span>Fictional shop built as a design exercise. Prices and specs are sample data.</span>
+          <span>Fictional shop built as a design exercise. Prices and specs are sample data. Photos by Unsplash photographers, credited on each listing and in the repo.</span>
           <Link href="/admin" className="underline">
             Owner login
           </Link>

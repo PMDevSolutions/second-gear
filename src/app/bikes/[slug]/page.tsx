@@ -3,6 +3,8 @@ import { SEED_BIKES, getBike } from "@/lib/bikes";
 import { BikeDetail } from "@/components/BikeDetail";
 import { formatPrice } from "@/lib/format";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return SEED_BIKES.map((b) => ({ slug: b.slug }));
 }

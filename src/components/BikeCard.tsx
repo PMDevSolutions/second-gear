@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Bike } from "@/lib/types";
 import { formatMiles, formatPrice } from "@/lib/format";
+import { bikeHref } from "@/lib/bikes";
 import { BikePhoto } from "./BikePhoto";
 import { ConditionBadge, StatusBadge } from "./Badges";
 
@@ -20,7 +21,7 @@ export function BikeCard({ bike }: { bike: Bike }) {
       <div className="flex flex-1 flex-col gap-3 p-4">
         <div className="flex items-start justify-between gap-3">
           <h3 className="text-base font-semibold leading-tight">
-            <Link href={`/bikes/${bike.slug}`} className="after:absolute after:inset-0 after:content-['']">
+            <Link href={bikeHref(bike.slug)} className="after:absolute after:inset-0 after:content-['']">
               <span className="block text-xs font-medium uppercase tracking-wide text-ink-2">{bike.brand}</span>
               {bike.model}
             </Link>

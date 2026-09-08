@@ -1,13 +1,15 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import type { Bike, Status } from "@/lib/types";
 import { CATEGORIES, CONDITIONS, FRAME_SIZES, STATUSES } from "@/lib/types";
 import { useInventory } from "@/lib/store";
 import { formatMiles, formatPrice, slugify } from "@/lib/format";
+import { bikeHref } from "@/lib/bikes";
 import { BikePhoto } from "../BikePhoto";
 
-type Draft = Omit<Bike, "id" | "slug" | "addedAt" | "hue" | "photoCount" | "inspection" | "included"> & {
+type Draft = Omit<Bike, "id" | "slug" | "addedAt" | "hue" | "photos" | "inspection" | "included"> & {
   inspectionText: string;
   includedText: string;
 };
@@ -65,7 +67,7 @@ export function InventoryManager({ seed }: { seed: Bike[] }) {
         id,
         slug: slugify(`${base.brand} ${base.model} ${base.year} ${id.slice(-4)}`),
         hue: Math.floor(Math.random() * 360),
-        photoCount: 4,
+        photos: [],
         addedAt: new Date().toISOString().slice(0, 10),
       };
       update([bike, ...bikes]);
@@ -128,8 +130,8 @@ export function InventoryManager({ seed }: { seed: Bike[] }) {
         <ul className="mt-5 grid gap-3">
           {visible.map((b) => (
             <li key={b.id} className="card grid grid-cols-[72px_1fr] items-center gap-3 p-3 sm:grid-cols-[96px_1fr_auto]">
-              <div className="aspect-[4/3] overflow-hidden rounded-lg">
-                <BikePhoto bike={b} />
+              <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
+                <BikePhoto bike={b} sizes="96px" />
               </div>
               <div className="min-w-0">
                 <p className="truncate font-semibold">
@@ -150,9 +152,9 @@ export function InventoryManager({ seed }: { seed: Bike[] }) {
                 </label>
               </div>
               <div className="col-span-2 flex gap-2 sm:col-span-1">
-                <a href={`/bikes/${b.slug}`} className="btn btn-secondary py-1.5 text-sm">
+                <Link href={bikeHref(b.slug)} className="btn btn-secondary py-1.5 text-sm">
                   View
-                </a>
+                </Link>
                 <button type="button" onClick={() => open(b)} className="btn btn-secondary py-1.5 text-sm">
                   Edit
                 </button>
