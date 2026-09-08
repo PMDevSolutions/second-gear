@@ -2,8 +2,8 @@
 
 A fictional used e-bike shop in Canton, Baltimore, built as a UI/UX assessment. Two connected parts: a storefront for the 5 to 30 bikes on the floor, and a small service site for repairs and maintenance. This document explains the decisions; the code is the proof.
 
-Live prototype: (add link)
-Repository: (add link)
+Live prototype: https://pmdevsolutions.github.io/second-gear/
+Repository: https://github.com/PMDevSolutions/second-gear
 
 ## The one-sentence brief I gave myself
 
@@ -13,7 +13,7 @@ Someone shopping for a used e-bike has three questions, in this order: will it f
 
 Five public pages and one owner page.
 
-- **Home.** Not a brochure. It exists to route people: the newest six bikes for the browser, a repair price grid for the person whose bike is broken, and the shop's address and hours because a used bike shop is a physical place people need to find. Three short trust promises sit beside the headline instead of a hero photo, because the placeholders would have been the weakest thing on the page and because for a used-goods business the promises are the product.
+- **Home.** Not a brochure. It exists to route people: the newest six bikes for the browser, a repair price grid for the person whose bike is broken, and the shop's address and hours because a used bike shop is a physical place people need to find. One photo of someone actually riding sits beside the headline, and three short trust promises sit directly under it, because for a used-goods business the promises are the product.
 - **Bikes for sale.** The core page. Filters on the left (type, frame size by rider height, budget, include sold), search and sort above the grid, cards in a three-column grid that collapses to one.
 - **Bike detail.** Photos left, decision panel right, everything else below the fold. Detail is where the sale happens, so the two calls to action (book a test ride, ask a question) are visible without scrolling on every screen size.
 - **Repairs and service.** Service list with starting prices, a four-step "how it works," find-us block, and a deliberate cross-link to the bikes for sale, because a big repair quote is often the moment someone decides to upgrade.
@@ -68,11 +68,11 @@ The form asks for battery health and tested range as separate fields from batter
 
 ## Tech stack and why
 
-Next.js 16 (App Router), TypeScript, Tailwind CSS 4. No component library and no animation library. The brief is about UI/UX judgment, so I wanted every visual decision to be one I made rather than one a library made for me. Bike pages are statically generated from the seed data and hydrate a small client component for the gallery and the store overlay. Data is local JSON via a typed module; there is no mock API server because it would add moving parts without changing anything a user sees.
+Next.js 16 (App Router), TypeScript, Tailwind CSS 4. No component library and no animation library. The brief is about UI/UX judgment, so I wanted every visual decision to be one I made rather than one a library made for me. The site is a static export deployed to GitHub Pages by a GitHub Actions workflow on every push. Bike pages are prerendered from the seed data and hydrate a small client component for the gallery and the store overlay; bikes added through the owner page open in a client-rendered viewer instead, since a static host cannot mint new routes. Data is local JSON via a typed module; there is no mock API server because it would add moving parts without changing anything a user sees.
 
 ## Trade-offs and things I would do next
 
-- **Photos are placeholders.** Every listing has tinted line art in place of photos. For a real launch the photos matter more than anything else on the page; I did not want to fake them with stock or generated images of bikes the shop does not have.
+- **Photos are stock.** Every listing uses an Unsplash photo chosen to match the type and color of the bike, credited on the listing and in the README. They are not photos of the exact models named, and I renamed the sample listings to match what the photos show rather than the other way round. Nothing is AI-generated. A bike added through the owner page gets placeholder line art until there is an upload step.
 - **Prices and specs are sample data.** Typical for the models named, but illustrative.
 - **No map.** A static address and hours were enough for the prototype. A real build would embed a map on the service and contact pages.
 - **Search is client-side substring matching.** Fine for 30 bikes, would need indexing at 300.
