@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { PHOTOS } from "@/lib/photos";
+import { PHOTOS, photoSrc } from "@/lib/photos";
 import { SHOP } from "@/components/Footer";
 
 export const metadata: Metadata = {
@@ -44,7 +44,7 @@ export default function ServicesPage() {
         </div>
       </div>
       <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-line">
-        <Image src={`/photos/${PHOTOS.workshop.file}`} alt={PHOTOS.workshop.alt} fill sizes="(min-width: 768px) 40vw, 100vw" className="object-cover" />
+        <Image src={photoSrc(PHOTOS.workshop.file)} alt={PHOTOS.workshop.alt} fill sizes="(min-width: 768px) 40vw, 100vw" className="object-cover" />
       </div>
       </div>
 

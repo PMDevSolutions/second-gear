@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Bike, Photo } from "@/lib/types";
+import { photoSrc } from "@/lib/photos";
 
 type Props = {
   bike: Pick<Bike, "brand" | "model" | "hue" | "photos">;
@@ -16,7 +17,7 @@ export function BikePhoto({ bike, index = 0, className = "", priority = false, s
   if (photo) {
     return (
       <Image
-        src={`/photos/${photo.file}`}
+        src={photoSrc(photo.file)}
         alt={photo.alt}
         fill
         sizes={sizes}

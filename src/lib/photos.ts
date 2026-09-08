@@ -3,6 +3,11 @@ import type { Photo } from "./types";
 // Unsplash photos (Unsplash License). Credits are also listed in README.md.
 const u = (id: string) => `https://unsplash.com/photos/${id}`;
 
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+/** Public URL for a photo file, including the deployment base path. */
+export const photoSrc = (file: string) => `${BASE}/photos/${file}`;
+
 export const PHOTOS = {
   kboRiding: { file: "kXP41LVdcv0.jpg", alt: "Rider on a white and black commuter e-bike on a city street", credit: "KBO Bike", source: u("kXP41LVdcv0") },
   kboBattery: { file: "msIweXufPUs.jpg", alt: "Hand resting on the battery of a white and black e-bike", credit: "KBO Bike", source: u("msIweXufPUs") },

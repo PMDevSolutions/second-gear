@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { PHOTOS } from "@/lib/photos";
+import { PHOTOS, photoSrc } from "@/lib/photos";
 import { SEED_BIKES, availableBikes } from "@/lib/bikes";
 import { BikeCard } from "@/components/BikeCard";
 import { SHOP } from "@/components/Footer";
@@ -45,7 +45,7 @@ export default function HomePage() {
             </p>
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-line md:aspect-[5/4]">
-            <Image src={`/photos/${PHOTOS.stepThruSea.file}`} alt={PHOTOS.stepThruSea.alt} fill priority sizes="(min-width: 768px) 45vw, 100vw" className="object-cover" />
+            <Image src={photoSrc(PHOTOS.stepThruSea.file)} alt={PHOTOS.stepThruSea.alt} fill priority sizes="(min-width: 768px) 45vw, 100vw" className="object-cover" />
           </div>
         </div>
       </section>
